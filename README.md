@@ -18,7 +18,7 @@ allprojects {
 ```
 ```
 dependencies {
-        compile 'com.github.fanhua1994:WheelPicker:1.0.2'
+     implementation 'com.github.hexingbo:WheelPickerAddress:1.0.2'
 }
 ```
 
