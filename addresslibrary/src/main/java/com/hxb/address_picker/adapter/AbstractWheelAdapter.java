@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.hxb.hxbaddressselectionviewlibrary.adapter;
+package com.hxb.address_picker.adapter;
 
 import android.database.DataSetObserver;
 import android.view.View;

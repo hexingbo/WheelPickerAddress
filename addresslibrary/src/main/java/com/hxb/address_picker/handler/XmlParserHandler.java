@@ -1,10 +1,10 @@
-package com.hxb.hxbaddressselectionviewlibrary.handler;
+package com.hxb.address_picker.handler;
 
 
 
-import com.hxb.hxbaddressselectionviewlibrary.modle.CityModel;
-import com.hxb.hxbaddressselectionviewlibrary.modle.DistrictModel;
-import com.hxb.hxbaddressselectionviewlibrary.modle.ProvinceModel;
+import com.hxb.address_picker.modle.CityModel;
+import com.hxb.address_picker.modle.DistrictModel;
+import com.hxb.address_picker.modle.ProvinceModel;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

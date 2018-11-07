@@ -1,4 +1,4 @@
-package com.hxb.hxbaddressselectionviewlibrary.handler;
+package com.hxb.address_picker.handler;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

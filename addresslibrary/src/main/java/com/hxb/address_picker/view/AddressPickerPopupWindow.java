@@ -1,4 +1,4 @@
-package com.hxb.hxbaddressselectionviewlibrary.view;
+package com.hxb.address_picker.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import com.hxb.hxbaddressselectionviewlibrary.R;
+import com.hxb.address_picker.R;
 
 /**
  * @Author :hexingbo

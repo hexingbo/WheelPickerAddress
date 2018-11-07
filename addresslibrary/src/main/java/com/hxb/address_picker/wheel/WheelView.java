@@ -17,7 +17,7 @@
  *  limitations under the License.
  */
 
-package com.hxb.hxbaddressselectionviewlibrary.wheel;
+package com.hxb.address_picker.wheel;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -33,11 +33,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
-import com.hxb.hxbaddressselectionviewlibrary.R;
-import com.hxb.hxbaddressselectionviewlibrary.adapter.WheelViewAdapter;
-import com.hxb.hxbaddressselectionviewlibrary.listener.OnWheelChangedListener;
-import com.hxb.hxbaddressselectionviewlibrary.listener.OnWheelClickedListener;
-import com.hxb.hxbaddressselectionviewlibrary.listener.OnWheelScrollListener;
+import com.hxb.address_picker.R;
+import com.hxb.address_picker.adapter.WheelViewAdapter;
+import com.hxb.address_picker.listener.OnWheelChangedListener;
+import com.hxb.address_picker.listener.OnWheelClickedListener;
+import com.hxb.address_picker.listener.OnWheelScrollListener;
 
 import java.util.LinkedList;
 import java.util.List;

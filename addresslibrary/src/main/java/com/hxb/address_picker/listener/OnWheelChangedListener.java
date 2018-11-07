@@ -14,10 +14,10 @@
  *  limitations under the License.
  */
 
-package com.hxb.hxbaddressselectionviewlibrary.listener;
+package com.hxb.address_picker.listener;
 
 
-import com.hxb.hxbaddressselectionviewlibrary.wheel.WheelView;
+import com.hxb.address_picker.wheel.WheelView;
 
 /**
  * Wheel changed listener interface.

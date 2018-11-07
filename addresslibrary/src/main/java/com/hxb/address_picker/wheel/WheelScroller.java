@@ -17,7 +17,7 @@
  *  limitations under the License.
  */
 
-package com.hxb.hxbaddressselectionviewlibrary.wheel;
+package com.hxb.address_picker.wheel;
 
 import android.content.Context;
 import android.os.Handler;

@@ -1,4 +1,4 @@
-package com.hxb.hxbaddressselectionviewlibrary.modle;
+package com.hxb.address_picker.modle;
 
 import java.util.List;
 /**

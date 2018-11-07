@@ -1,4 +1,4 @@
-package com.hxb.hxbaddressselectionviewlibrary.view;
+package com.hxb.address_picker.view;
 
 
 import android.content.Context;
@@ -6,19 +6,18 @@ import android.content.res.AssetManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hxb.hxbaddressselectionviewlibrary.R;
-import com.hxb.hxbaddressselectionviewlibrary.adapter.ArrayWheelAdapter;
-import com.hxb.hxbaddressselectionviewlibrary.modle.CityModel;
-import com.hxb.hxbaddressselectionviewlibrary.modle.DistrictModel;
-import com.hxb.hxbaddressselectionviewlibrary.listener.OnWheelChangedListener;
-import com.hxb.hxbaddressselectionviewlibrary.listener.OnWheelScrollListener;
-import com.hxb.hxbaddressselectionviewlibrary.modle.ProvinceModel;
-import com.hxb.hxbaddressselectionviewlibrary.wheel.WheelView;
-import com.hxb.hxbaddressselectionviewlibrary.handler.XmlParserHandler;
+import com.hxb.address_picker.R;
+import com.hxb.address_picker.adapter.ArrayWheelAdapter;
+import com.hxb.address_picker.modle.CityModel;
+import com.hxb.address_picker.modle.DistrictModel;
+import com.hxb.address_picker.listener.OnWheelChangedListener;
+import com.hxb.address_picker.listener.OnWheelScrollListener;
+import com.hxb.address_picker.modle.ProvinceModel;
+import com.hxb.address_picker.wheel.WheelView;
+import com.hxb.address_picker.handler.XmlParserHandler;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -102,13 +101,13 @@ public class AddressPicker extends RelativeLayout implements OnWheelScrollListen
         mViewAddressPick.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         mWheelViewProvince = mViewAddressPick.findViewById(R.id.id_province);
         mWheelViewProvince.setCyclic(false);
-        mWheelViewProvince.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
+//        mWheelViewProvince.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
         mWheelViewCity = mViewAddressPick.findViewById(R.id.id_city);
         mWheelViewCity.setCyclic(false);
-        mWheelViewCity.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
+//        mWheelViewCity.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
         mWheelViewDistrict = mViewAddressPick.findViewById(R.id.id_district);
         mWheelViewDistrict.setCyclic(false);
-        mWheelViewDistrict.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
+//        mWheelViewDistrict.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
         mWheelViewProvince.addChangingListener(this);
         mWheelViewCity.addChangingListener(this);
         mWheelViewDistrict.addChangingListener(this);

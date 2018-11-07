@@ -1,4 +1,4 @@
-package com.hxb.hxbaddressselectionviewlibrary;
+package com.hxb.address_picker;
 
 import org.junit.Test;
 

@@ -3,11 +3,9 @@ package com.hexingbo.wheelpickeraddress;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.hxb.hxbaddressselectionviewlibrary.view.AddressPicker;
-import com.hxb.hxbaddressselectionviewlibrary.view.AddressPickerPopupWindow;
+import com.hxb.address_picker.view.AddressPickerPopupWindow;
 
 public class MainActivity extends AppCompatActivity {
 

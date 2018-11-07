@@ -12,7 +12,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="44dp"
             android:background="#f0f0f0"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -57,29 +57,29 @@
             android:orientation="horizontal">
 
 
-            <com.hxb.hxbaddressselectionviewlibrary.wheel.WheelView
+            <com.hxb.address_picker.wheel.WheelView
                 android:id="@+id/id_province"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:minHeight="220dp" />
+                android:minHeight="200dp" />
 
 
-            <com.hxb.hxbaddressselectionviewlibrary.wheel.WheelView
+            <com.hxb.address_picker.wheel.WheelView
                 android:id="@+id/id_city"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:minHeight="220dp"
+                android:minHeight="200dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp" />
 
-            <com.hxb.hxbaddressselectionviewlibrary.wheel.WheelView
+            <com.hxb.address_picker.wheel.WheelView
                 android:id="@+id/id_district"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:minHeight="220dp" />
+                android:minHeight="200dp" />
         </LinearLayout>
 
 
