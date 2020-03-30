@@ -11,9 +11,10 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_adddress_top"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:background="#f0f0f0"
+            android:background="@color/Color_Background_Title"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -26,8 +27,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="取消"
-                android:textColor="#464646"
-                android:textSize="15dp" />
+                android:textColor="@color/Color_Cancel"
+                android:textSize="@dimen/size_address_title" />
 
             <TextView
                 android:id="@+id/address_confirm_btn"
@@ -39,18 +40,20 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="确定"
-                android:textColor="#464646"
-                android:textSize="15dp" />
+                android:textColor="@color/Color_Submit"
+                android:textSize="@dimen/size_address_title" />
 
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/view_line"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#b9b9b9" />
+            android:layout_height="1px"
+            android:background="@color/dividerColor" />
 
         <LinearLayout
+            android:id="@+id/ll_address_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

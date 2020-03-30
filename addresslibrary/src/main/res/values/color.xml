@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="wheel_paint_textcolor" >#d9d9d9</color>
+    
+    <color name="Color_Cancel" >#383847</color>
+    <color name="Color_Submit" >#383847</color>
+    
+    <color name="Color_Province" >#383847</color>
+    <color name="Color_City" >#383847</color>
+    <color name="Color_District" >#383847</color>
+    
+    <color name="dividerColor" >#cccccc</color>
+    <color name="Color_Content_Line" >#ff0000</color>
+    <color name="selectItemColor" >#80808080</color>
+    
+    <color name="Color_Background_Title" >#f0f0f0</color>
+    <color name="Color_Background_Wheel" >#ffffff</color>
 </resources>

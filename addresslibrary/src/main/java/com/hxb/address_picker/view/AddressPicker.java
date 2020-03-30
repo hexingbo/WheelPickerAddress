@@ -4,20 +4,22 @@ package com.hxb.address_picker.view;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hxb.address_picker.R;
 import com.hxb.address_picker.adapter.ArrayWheelAdapter;
-import com.hxb.address_picker.modle.CityModel;
-import com.hxb.address_picker.modle.DistrictModel;
+import com.hxb.address_picker.handler.XmlParserHandler;
 import com.hxb.address_picker.listener.OnWheelChangedListener;
 import com.hxb.address_picker.listener.OnWheelScrollListener;
+import com.hxb.address_picker.modle.CityModel;
+import com.hxb.address_picker.modle.DistrictModel;
 import com.hxb.address_picker.modle.ProvinceModel;
 import com.hxb.address_picker.wheel.WheelView;
-import com.hxb.address_picker.handler.XmlParserHandler;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -80,39 +82,198 @@ public class AddressPicker extends RelativeLayout implements OnWheelScrollListen
     private OnAddressPickerChangListener mOnAddressPickChangListener;
 
     private Context mContext;
+    private String Str_Submit;//确定按钮文字
+    private String Str_Cancel;//取消按钮文字
+    private int Color_Province;//省份字体颜色
+    private int Color_City;//城市字体颜色
+    private int Color_District;//区域字体颜色
 
-    public AddressPicker(Context context, boolean isShowTotal) {
-        super(context);
-        setShowTotalOptions(isShowTotal);
-        // TODO Auto-generated constructor stub
-        init(context);
+    private int Color_Submit;//确定按钮颜色
+    private int Color_Cancel;//取消按钮颜色
+
+    private int Color_Background_Wheel;//滚轮背景颜色
+    private int Color_Background_Title;//标题背景颜色
+
+    private int Size_Submit_Cancel;//确定取消按钮大小
+    private int Size_Content;//内容字体大小
+    private int dividerColor; //分割线的颜色
+    private int selectItemColor;//当前选中item背景
+    private int Color_Content_Line;//内容区域分割线颜色
+    private boolean isShowTotal = false;
+
+
+    public AddressPicker(Builder builder) {
+        super(builder.context);
+        this.mContext = builder.context;
+        this.Str_Submit = builder.Str_Submit;
+        this.Str_Cancel = builder.Str_Cancel;
+        this.Color_Submit = builder.Color_Submit;
+        this.Color_Cancel = builder.Color_Cancel;
+        this.Color_Background_Wheel = builder.Color_Background_Wheel;
+        this.Color_Background_Title = builder.Color_Background_Title;
+        this.Size_Submit_Cancel = builder.Size_Submit_Cancel;
+        this.Size_Content = builder.Size_Content;
+        this.dividerColor = builder.dividerColor;
+        this.selectItemColor = builder.selectItemColor;
+        this.Color_Content_Line = builder.Color_Content_Line;
+        this.isShowTotal = builder.isShowTotal;
+        this.Color_Province = builder.Color_Province;
+        this.Color_City = builder.Color_City;
+        this.Color_District = builder.Color_District;
+        this.mOnAddressPickChangListener = builder.listener;
+        initView(builder.context);
         initData();
+
     }
 
-    public AddressPicker(Context context) {
-        this(context, false);
+    //建造器
+    public static class Builder {
+        private Context context;
+        private String Str_Submit = "确定";//确定按钮文字
+        private String Str_Cancel = "取消";//取消按钮文字
+
+        private int Color_Submit = R.color.Color_Submit;//确定按钮颜色
+        private int Color_Cancel = R.color.Color_Cancel;//取消按钮颜色
+        private int Color_Province = R.color.Color_Province;//省份字体颜色
+        private int Color_City = R.color.Color_City;//城市字体颜色
+        private int Color_District = R.color.Color_District;//区域字体颜色
+
+        private int Color_Background_Wheel = R.color.Color_Background_Wheel;//滚轮背景颜色
+        private int Color_Background_Title = R.color.Color_Background_Title;//标题背景颜色
+
+        private int Size_Submit_Cancel = 16;//确定取消按钮大小
+        private int Size_Content = 16;//内容字体大小
+        private int dividerColor = R.color.dividerColor; //分割线的颜色
+        private int selectItemColor = R.color.selectItemColor; ;//当前选中item背景
+        private int Color_Content_Line = R.color.Color_Content_Line; //内容区域割线的颜色
+        private boolean isShowTotal = false;
+        private OnAddressPickerChangListener listener;
+
+        //Required
+        public Builder(Context context, OnAddressPickerChangListener listener) {
+            this.context = context;
+            this.listener = listener;
+        }
+
+        public Builder setStrSubmit(String Str_Submit) {
+            this.Str_Submit = Str_Submit;
+            return this;
+        }
+
+        public Builder setStrCancel(String Str_Cancel) {
+            this.Str_Cancel = Str_Cancel;
+            return this;
+        }
+
+        public Builder setColorSubmit(int Color_Submit) {
+            this.Color_Submit = Color_Submit;
+            return this;
+        }
+
+        public Builder setColorCancel(int Color_Cancel) {
+            this.Color_Cancel = Color_Cancel;
+            return this;
+        }
+
+        public Builder setColorBackgroundWheel(int Color_Background_Wheel) {
+            this.Color_Background_Wheel = Color_Background_Wheel;
+            return this;
+        }
+
+        public Builder setColorBackgroundTitle(int Color_Background_Title) {
+            this.Color_Background_Title = Color_Background_Title;
+            return this;
+        }
+
+        public Builder setSizeSubmitCancel(int Size_Submit_Cancel) {
+            this.Size_Submit_Cancel = Size_Submit_Cancel;
+            return this;
+        }
+
+        public Builder setSizeContent(int Size_Content) {
+            this.Size_Content = Size_Content;
+            return this;
+        }
+
+        public Builder setDividerColor(int dividerColor) {
+            this.dividerColor = dividerColor;
+            return this;
+        }
+
+        public Builder setShowTotalOptions(boolean isShowTotal) {
+            this.isShowTotal = isShowTotal;
+            return this;
+        }
+
+        public Builder setColorProvince(int color_Province) {
+            Color_Province = color_Province;
+            return this;
+        }
+
+        public Builder setColorCity(int color_City) {
+            Color_City = color_City;
+            return this;
+        }
+
+        public Builder setColorDistrict(int color_District) {
+            Color_District = color_District;
+            return this;
+        }
+
+        public Builder setColorContentLine(int Color_Content_Line) {
+            Color_Content_Line = Color_Content_Line;
+            return this;
+        }
+
+        public Builder setSelectItemColor(int selectItemColor) {
+            this.selectItemColor = selectItemColor;
+            return this;
+        }
+
+        public AddressPicker build() {
+            return new AddressPicker(this);
+        }
+
     }
 
-    public void init(Context context) {
+    public void initView(Context context) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
 
         mViewAddressPick = mInflater.inflate(R.layout.pop_address_pick, null);
         mViewAddressPick.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         mWheelViewProvince = mViewAddressPick.findViewById(R.id.id_province);
-        mWheelViewProvince.setCyclic(false);
-//        mWheelViewProvince.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
+        mWheelViewProvince.setCyclic(false);//是否循环
+        mWheelViewProvince.setDividerColor(Color_Content_Line);
+//        mWheelViewProvince.setShadowColor(R.drawable.wheel_center, R.drawable.wheel_center, R.drawable.wheel_center);
+
         mWheelViewCity = mViewAddressPick.findViewById(R.id.id_city);
-        mWheelViewCity.setCyclic(false);
+        mWheelViewCity.setCyclic(false);//是否循环
+        mWheelViewCity.setDividerColor(Color_Content_Line);
 //        mWheelViewCity.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
+
         mWheelViewDistrict = mViewAddressPick.findViewById(R.id.id_district);
-        mWheelViewDistrict.setCyclic(false);
+        mWheelViewDistrict.setCyclic(false);//是否循环
+        mWheelViewDistrict.setDividerColor(Color_Content_Line);
 //        mWheelViewDistrict.setShadowColor(R.drawable.wheel_bg, R.drawable.wheel_bg, R.drawable.wheel_bg);
+
         mWheelViewProvince.addChangingListener(this);
         mWheelViewCity.addChangingListener(this);
         mWheelViewDistrict.addChangingListener(this);
 
+        RelativeLayout mRlAdddressTop = mViewAddressPick.findViewById(R.id.rl_adddress_top);
+        mRlAdddressTop.setBackgroundColor(mContext.getResources().getColor(Color_Background_Title));
+
+        LinearLayout mLlAddressContent = mViewAddressPick.findViewById(R.id.ll_address_content);
+        mLlAddressContent.setBackgroundColor(getResources().getColor(Color_Background_Wheel));
+
+        View viewLine = mViewAddressPick.findViewById(R.id.view_line);
+        viewLine.setBackgroundColor(getResources().getColor(dividerColor));
+
         mBtnAddressConfirm = mViewAddressPick.findViewById(R.id.address_confirm_btn);
+        mBtnAddressConfirm.setText(Str_Submit);
+        mBtnAddressConfirm.setTextColor(getResources().getColor(Color_Submit));
+        mBtnAddressConfirm.setTextSize(TypedValue.COMPLEX_UNIT_SP, Size_Submit_Cancel);
         mBtnAddressConfirm.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -124,6 +285,9 @@ public class AddressPicker extends RelativeLayout implements OnWheelScrollListen
             }
         });
         mBtnAddressCancel = mViewAddressPick.findViewById(R.id.address_cancel_btn);
+        mBtnAddressCancel.setText(Str_Cancel);
+        mBtnAddressCancel.setTextColor(getResources().getColor(Color_Cancel));
+        mBtnAddressCancel.setTextSize(TypedValue.COMPLEX_UNIT_SP, Size_Submit_Cancel);
         mBtnAddressCancel.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -135,23 +299,17 @@ public class AddressPicker extends RelativeLayout implements OnWheelScrollListen
         });
 
         addView(mViewAddressPick);
-
     }
 
     public void initData() {
         initProvinceDatas();
         ArrayWheelAdapter<String> awa = new ArrayWheelAdapter<String>(mContext, mProvinceDatas);
-        awa.setTextSize(15);
+        awa.setTextSize(Size_Content);
+        awa.setTextColor(getResources().getColor(Color_Province));//省
         mWheelViewProvince.setViewAdapter(awa);
         updateCities();
         updateAreas();
 
-    }
-
-    private boolean isShowTotal = false;
-
-    public void setShowTotalOptions(boolean isShowTotal) {
-        this.isShowTotal = isShowTotal;
     }
 
     /**
@@ -238,8 +396,8 @@ public class AddressPicker extends RelativeLayout implements OnWheelScrollListen
         }
         try {
             ArrayWheelAdapter<String> awa = new ArrayWheelAdapter<String>(mContext, areas);
-            awa.setTextSize(15);
-            // awa.setTextColor(0xFFFF0000);
+            awa.setTextSize(Size_Content);
+            awa.setTextColor(getResources().getColor(Color_City));//市
             mWheelViewDistrict.setViewAdapter(awa);
             mWheelViewDistrict.setCurrentItem(0);
             mCurrentDistrictName = areas[0];
@@ -260,21 +418,14 @@ public class AddressPicker extends RelativeLayout implements OnWheelScrollListen
             cities = new String[]{""};
         }
         ArrayWheelAdapter<String> awa = new ArrayWheelAdapter<String>(mContext, cities);
-        awa.setTextSize(15);
-        // awa.setTextColor(0xFFFF0000);
+        awa.setTextSize(Size_Content);
+        awa.setTextColor(getResources().getColor(Color_District));//区
         mWheelViewCity.setViewAdapter(awa);
         mWheelViewCity.setCyclic(false);
         mWheelViewCity.setCurrentItem(0);
         updateAreas();
     }
 
-    public void setListener(OnAddressPickerChangListener listener) {
-        mOnAddressPickChangListener = listener;
-    }
-
-    public void setIndicatorAndAreaById(String areaId) {
-
-    }
 
     public void setIndicatorById(String areaId) {
         if (TextUtils.isEmpty(areaId))

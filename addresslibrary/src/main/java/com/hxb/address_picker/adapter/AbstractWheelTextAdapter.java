@@ -18,6 +18,7 @@ package com.hxb.address_picker.adapter;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -224,7 +225,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     protected void configureTextView(TextView view) {
         view.setTextColor(textColor);
         view.setGravity(Gravity.CENTER);
-        view.setTextSize(textSize);
+        view.setTextSize(TypedValue.COMPLEX_UNIT_SP,textSize);
         view.setEllipsize(TextUtils.TruncateAt.END);
         view.setLines(1);
 //        view.setCompoundDrawablePadding(20);

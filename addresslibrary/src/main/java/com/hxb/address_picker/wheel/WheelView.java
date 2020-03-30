@@ -1,7 +1,7 @@
 /*
  *  Android Wheel Control.
  *  https://code.google.com/p/android-wheel/
- * 
+ *
  *  Copyright 2011 Yuri Kanivets
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,8 @@ import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
@@ -54,8 +56,8 @@ public class WheelView extends View {
      */
 //     Modified by wulianghuan
 //    private int[] SHADOWS_COLORS = new int[]{0xFF111111, 0x00AAAAAA, 0x00AAAAAA};
-//    private int[] SHADOWS_COLORS = new int[] { 0xefE9E9E9,0xcfE9E9E9, 0x3fE9E9E9 };
-    private int[] SHADOWS_COLORS = new int[]{0x0FFFFFFF,0x0FFFFFFF, 0x0FFFFFFF};
+//    private int[] SHADOWS_COLORS = new int[]{0xefE9E9E9, 0xcfE9E9E9, 0x3fE9E9E9};
+    private int[] SHADOWS_COLORS = new int[]{0x0FFFFFFF, 0x0FFFFFFF, 0x0FFFFFFF};
 
     /**
      * Top and bottom items offset (to hide that)
@@ -87,6 +89,8 @@ public class WheelView extends View {
     // Wheel drawables
     private int wheelBackground = R.drawable.wheel_bg;
     private int wheelForeground = R.drawable.wheel_val;
+    private int dividerColor = R.color.Color_Content_Line; //分割线的颜色
+    private int selectItemColor = R.color.selectItemColor; //分割线的颜色
 
     // Shadows drawables
     private GradientDrawable topShadow;
@@ -489,6 +493,24 @@ public class WheelView extends View {
     }
 
     /**
+     * 分割线的颜色
+     *
+     * @param dividerColor
+     */
+    public void setDividerColor(int dividerColor) {
+        this.dividerColor = dividerColor;
+    }
+
+    /**
+     * 当前选择item的背景  半透明
+     *
+     * @param selectItemColor
+     */
+    public void setSelectItemColor(int selectItemColor) {
+        this.selectItemColor = selectItemColor;
+    }
+
+    /**
      * Invalidates wheel
      *
      * @param clearCaches if true then cached views will be clear
@@ -694,21 +716,25 @@ public class WheelView extends View {
     private void drawCenterRect(Canvas canvas) {
         int center = getHeight() / 2;
         int offset = (int) (getItemHeight() / 2 * 1.2);
-        /*/ Remarked by wulianghuan 2014-11-27  使用自己的画线，而不是描边
+        /*// Remarked by wulianghuan 2014-11-27  使用自己的画线，而不是描边
         Rect rect = new Rect(left, top, right, bottom)
 		centerDrawable.setBounds(bounds)
 		centerDrawable.setBounds(0, center - offset, getWidth(), center + offset);
 		centerDrawable.draw(canvas);
 		//*/
         Paint paint = new Paint();
-        paint.setColor(getResources().getColor(R.color.wheel_paint_textcolor));
+//        paint.setColor(getResources().getColor(dividerColor));
+        paint.setColor(getResources().getColor(selectItemColor));//选中背景色
         // 设置线宽
-        paint.setStrokeWidth((float) 2);
-        // 绘制上边直线
-        canvas.drawLine(0, center - offset, getWidth(), center - offset, paint);
-        // 绘制下边直线
-        canvas.drawLine(0, center + offset, getWidth(), center + offset, paint);
+        paint.setStrokeWidth((float) getItemHeight());
+//        // 绘制上边直线
+//        canvas.drawLine(0, center - offset, getWidth(), center - offset, paint);
+//        // 绘制下边直线
+//        canvas.drawLine(0, center + offset, getWidth(), center + offset, paint);
         //*/
+        //绘制当前选中背景色---替换两横线
+        canvas.drawLine(0, center, getWidth(), center, paint);
+
     }
 
     @Override

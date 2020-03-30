@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.hxb.address_picker.view.AddressPickerPopupWindow;
+import com.hxb.address_picker.view.AddressPickerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,18 +14,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final AddressPickerPopupWindow popupWindow = new AddressPickerPopupWindow(MainActivity.this);
-        popupWindow.setOnAddressPickerSelectListener(new AddressPickerPopupWindow.OnAddressPickerSelectListener() {
-            @Override
-            public void onSelected(String Province, String City, String District, String PostCode) {
-                Toast.makeText(MainActivity.this, Province + City + District, Toast.LENGTH_LONG).show();
-            }
-        });
-
         findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popupWindow.show();
+                new AddressPickerView.Builder(MainActivity.this, new AddressPickerView.OnAddressListener() {
+                    @Override
+                    public void onSelected(String Province, String City, String District, String PostCode) {
+                        Toast.makeText(MainActivity.this, Province + City + District, Toast.LENGTH_LONG).show();
+                    }
+                }).build().show();
             }
         });
     }
